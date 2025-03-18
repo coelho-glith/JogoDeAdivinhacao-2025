@@ -1,72 +1,43 @@
-﻿internal class Program
+﻿
+using JogoDeadiviacao;
+
+namespace JogoDeAdivinhacao
 {
-    private static void Main(string[] args)
+    internal class Program
     {
-        while (true)
+        static void Main(string[] args)
+        {
+            while (true)
+            {
+                MenuExibir();
+                Console.Write("Digite sua escolha: ");
+                JogoAdivinhacaoUltra.Selecionador(Console.ReadLine());
+
+                Random geradorNumeros = new Random();
+                int numeroSecret = geradorNumeros.Next(1, 50);
+                JogoAdivinhacaoUltra.SistemaAdivinhacao(numeroSecret);
+
+                Console.WriteLine("Deseja continuar? (s/N): ");
+                string opcaoContinuar = Console.ReadLine().ToUpper();
+
+                if (opcaoContinuar != "S")
+                    break;
+            }
+        }
+
+        static void MenuExibir()
         {
             Console.Clear();
-            Console.WriteLine("---------------------------------------------");
-            Console.WriteLine("Jogo De Adivinhacao");
-            Console.WriteLine("---------------------------------------------");
-            Console.WriteLine("Escolha um nível de dificuldade: ");
-            Console.WriteLine("---------------------------------------------");
-            Console.WriteLine("1 - Fácil (10 tentativas)");
-            Console.WriteLine("2 - Normal (5 tentativas)");
-            Console.WriteLine("3 - Difícil (3 tentativas)");
-            Console.WriteLine("---------------------------------------------");
+            Console.WriteLine("----------------------------------------");
+            Console.WriteLine("Jogo de Adivinhação");
+            Console.WriteLine("----------------------------------------");
 
-            int totalDeTentativas = 0;
-
-            Console.Write("Digite sua escolha de dificuldade Por favor: ");
-            string opcaoDificuldade = Console.ReadLine();
-
-            if (opcaoDificuldade == "1")
-                totalDeTentativas = 10;
-            else if (opcaoDificuldade == "2")
-                totalDeTentativas = 5;
-            else
-                totalDeTentativas = 3;
-
-            Random geradorNumeros = new Random();
-            int numeroSecreto = geradorNumeros.Next(1, 21);
-
-
-
-            for (int tentativa = 1; tentativa <= totalDeTentativas; tentativa++)
-            {
-                Console.WriteLine("---------------------------------------------");
-                Console.WriteLine($"Tentativa {tentativa} de {totalDeTentativas}");
-                Console.WriteLine("---------------------------------------------");
-
-
-                Console.Write("Digite um número: ");
-                int numeroDigitado = Convert.ToInt32(Console.ReadLine());
-
-                if (numeroDigitado == numeroSecreto)
-                {
-                    Console.WriteLine("---------------------------------------------");
-                    Console.WriteLine("Você acertou o número secreto!");
-                    Console.WriteLine("---------------------------------------------");
-
-                    break;
-                }
-
-                else if (numeroDigitado > numeroSecreto)
-                {
-                    Console.WriteLine("---------------------------------------------");
-
-                    Console.WriteLine("O número informado é maior que o número secreto! Cuidado.");
-                    Console.WriteLine("---------------------------------------------");
-                }
-
-                else if (numeroDigitado < numeroSecreto)
-                {
-                    Console.WriteLine("---------------------------------------------");
-
-                    Console.WriteLine("O número informado é menor que o número secreto! Cuidado.");
-                    Console.WriteLine("---------------------------------------------");
-                }
-            }
+            Console.WriteLine("Escolha um nível de dificuldade:");
+            Console.WriteLine("----------------------------------------");
+            Console.WriteLine("1 - Fácil (15 tentativas)");
+            Console.WriteLine("2 - Normal (8 tentativas)");
+            Console.WriteLine("3 - Difícil (5 tentativas)");
+            Console.WriteLine("----------------------------------------");
         }
     }
 }
