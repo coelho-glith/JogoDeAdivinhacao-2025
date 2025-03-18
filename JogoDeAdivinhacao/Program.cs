@@ -17,7 +17,7 @@
 
             int totalDeTentativas = 0;
 
-            Console.Write("Digite sua escolha de dificuldade: ");
+            Console.Write("Digite sua escolha de dificuldade Por favor: ");
             string opcaoDificuldade = Console.ReadLine();
 
             if (opcaoDificuldade == "1")
